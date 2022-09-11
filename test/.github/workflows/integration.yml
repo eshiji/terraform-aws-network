@@ -1,0 +1,21 @@
+name: Integration Tests
+on: push
+jobs:
+  go-tests:
+    name: Run Go Integration Tests
+    runs-on: ubuntu-latest
+    container: eshijii/terraform-tools:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Download Go Modules
+        working-directory: test
+        run: go mod download
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-east-1
+          role-to-assume: arn:aws:iam::314045369137:role/terraform-aws-network-module-test-role
+          role-session-name: terraform-aws-network-module-test-role-session
+      - name: Run Go Tests
+        working-directory: test
+        run: go test -v
