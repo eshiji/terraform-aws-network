@@ -146,33 +146,3 @@ output "private_route_table_nat_gtw_id" {
   description = "The NAT Gateway id in route table route"
   value       = aws_route_table.private[*].route[*]["nat_gateway_id"]
 }
-
-# VPC Endpoint
-output "aws_vpc_endpoint_s3_gateway_endpoint_id" {
-  description = "The ID of the VPC endpoint s3 gateway."
-  value       =  var.create_s3_gateway_endpoint ? aws_vpc_endpoint.s3_gateway_endpoint[*].id : null
-}
-
-output "aws_vpc_endpoint_s3_gateway_endpoint_arn" {
-  description = "The Amazon Resource Name (ARN) of the VPC endpoint s3 gateway."
-  value       = var.create_s3_gateway_endpoint ? aws_vpc_endpoint.s3_gateway_endpoint[*].arn : null
-}
-
-output "aws_vpc_endpoint_ecr_endpoint_id" {
-  description = "The ID of the ECR VPC endpoint."
-  value       = var.create_ecr_endpoint ? aws_vpc_endpoint.ecr_endpoint[*].id : null
-}
-output "aws_vpc_endpoint_ecr_endpoint_arn" {
-  description = "The Amazon Resource Name (ARN) of the ECR VPC endpoint."
-  value       = var.create_ecr_endpoint ? aws_vpc_endpoint.ecr_endpoint[*].arn : null
-}
-
-output "aws_vpc_endpoint_ecr_api_endpoint_id" {
-  description = "The ID of the ECR API VPC endpoint."
-  value       = var.create_ecr_endpoint ? aws_vpc_endpoint.ecr_api_endpoint[*].id : null
-}
-
-output "aws_vpc_endpoint_ecr_api_endpoint_arn" {
-  description = "The Amazon Resource Name (ARN) of the ECR API VPC endpoint."
-  value       = var.create_ecr_endpoint ? aws_vpc_endpoint.ecr_api_endpoint[*].arn : null
-}
